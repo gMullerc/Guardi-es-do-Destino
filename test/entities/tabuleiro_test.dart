@@ -5,9 +5,15 @@ import '../../bin/entities/jogador.dart';
 import '../../bin/entities/tabuleiro.dart';
 
 void main() {
+  Tabuleiro gerarTabuleiro() {
+    Jogador primeiroJogador = Jogador(deck: [], nomeJogador: "Matheus");
+    Jogador segundoJogador = Jogador(deck: [], nomeJogador: "Luana");
+    return Tabuleiro(
+        primeiroJogador: primeiroJogador, segundoJogador: segundoJogador);
+  }
+
   group('Tabuleiro', () {
     test('deve gerar 14 cartas e distribuí-las entre os jogadores', () {
-      // Arrange: prepara o cenário
       Jogador jogador1 = Jogador(deck: [], nomeJogador: "Matheus");
       Jogador jogador2 = Jogador(deck: [], nomeJogador: "Luana");
       Tabuleiro tabuleiro =

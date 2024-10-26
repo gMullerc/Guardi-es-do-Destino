@@ -24,26 +24,35 @@ class Tabuleiro {
     Carta cartaPrimeiroJogador,
     Carta cartaSegundoJogador,
   ) {
-    print("O jogador ${primeiroJogador.nomeJogador}, possui ${primeiroJogador.vida} pontos de vida.");
-    print("O jogador ${segundoJogador.nomeJogador}, possui ${segundoJogador.vida} pontos de vida.");
-    print("${cartaPrimeiroJogador.nome} (Dano: ${cartaPrimeiroJogador.dano}) VS ${cartaSegundoJogador.nome} (Dano: ${cartaSegundoJogador.dano})");
+    print("=============================================================================================\n\n");
+    print("O jogador ${primeiroJogador.nomeJogador}, possui ${primeiroJogador.vida} pontos de vida.\n");
+    print("O jogador ${segundoJogador.nomeJogador}, possui ${segundoJogador.vida} pontos de vida.\n");
+    print("=============================================================================================\n\n");
+    print("${cartaPrimeiroJogador.nome} (Dano: ${cartaPrimeiroJogador.dano}) VS ${cartaSegundoJogador.nome} (Dano: ${cartaSegundoJogador.dano})\n");
+     print("=============================================================================================\n\n");
 
     if (cartaPrimeiroJogador.dano > cartaSegundoJogador.dano) {
       double danoRestante = cartaPrimeiroJogador.dano - cartaSegundoJogador.dano;
       cartaSegundoJogador.qntVida -= danoRestante;
       if (cartaSegundoJogador.qntVida < 0) {
         segundoJogador.vida -= cartaSegundoJogador.qntVida.abs();
-      }
-      print("${cartaPrimeiroJogador.nome} venceu! ${cartaSegundoJogador.nome} agora tem ${cartaSegundoJogador.qntVida.toStringAsFixed(1)} de vida.");
-      print("O jogador ${segundoJogador.nomeJogador}, possui ${segundoJogador.vida} pontos de vida.");
+        segundoJogador.deck.removeWhere((carta) => carta.id == cartaSegundoJogador.id);
+      } 
+      print("=============================================================================================\n\n");
+      print("${cartaPrimeiroJogador.nome} venceu! ${cartaSegundoJogador.nome} agora tem ${cartaSegundoJogador.qntVida.toStringAsFixed(1)} de vida.\n");
+      print("O jogador ${segundoJogador.nomeJogador}, possui ${segundoJogador.vida} pontos de vida.\n");
+      print("=============================================================================================\n\n");
     }else if (cartaSegundoJogador.dano > cartaPrimeiroJogador.dano) {
       double danoRestante = cartaSegundoJogador.dano - cartaPrimeiroJogador.dano;
       cartaPrimeiroJogador.qntVida -= danoRestante;
       if (cartaPrimeiroJogador.qntVida < 0) {
         primeiroJogador.vida -= cartaPrimeiroJogador.qntVida.abs();
-      }
-      print("${cartaSegundoJogador.nome} venceu! ${cartaPrimeiroJogador.nome} agora tem ${cartaPrimeiroJogador.qntVida.toStringAsFixed(1)} de vida.");
-      print("O jogador ${primeiroJogador.nomeJogador}, possui ${primeiroJogador.vida} pontos de vida.");
+        primeiroJogador.deck.removeWhere((carta) => carta.id == cartaPrimeiroJogador.id);
+      } 
+      print("=============================================================================================\n\n");
+      print("${cartaSegundoJogador.nome} venceu! ${cartaPrimeiroJogador.nome} agora tem ${cartaPrimeiroJogador.qntVida.toStringAsFixed(1)} de vida.\n");
+      print("O jogador ${primeiroJogador.nomeJogador}, possui ${primeiroJogador.vida} pontos de vida.\n"); 
+      print("=============================================================================================\n\n");
     } else {
       double mediaDeDanoEntreOsJogadores = (cartaSegundoJogador.dano + cartaPrimeiroJogador.dano) / 2;
       double mediaDeDanoTratada = mediaDeDanoEntreOsJogadores < 0 ? 0 : mediaDeDanoEntreOsJogadores;
@@ -51,21 +60,24 @@ class Tabuleiro {
       cartaSegundoJogador.qntVida -= mediaDeDanoTratada;
       cartaPrimeiroJogador.qntVida -= mediaDeDanoTratada;
 
-      if (cartaSegundoJogador.qntVida < 0) {
+     if (cartaSegundoJogador.qntVida < 0) {
         segundoJogador.vida -= cartaSegundoJogador.qntVida.abs();
-      }
-      if (cartaPrimeiroJogador.qntVida < 0) {
+        segundoJogador.deck.removeWhere((carta) => carta.id == cartaSegundoJogador.id);
+      } 
+      
+     if (cartaPrimeiroJogador.qntVida < 0) {
         primeiroJogador.vida -= cartaPrimeiroJogador.qntVida.abs();
-      }
+        primeiroJogador.deck.removeWhere((carta) => carta.id == cartaPrimeiroJogador.id);
+      } 
+      print("=============================================================================================\n\n");
+      print("Empate! Ambos os danos são iguais.\n");
+      print("${cartaPrimeiroJogador.nome}, agora tem ${cartaPrimeiroJogador.qntVida.toStringAsFixed(1)} de vida.\n");
+      print("O jogador ${primeiroJogador.nomeJogador}, possui ${primeiroJogador.vida} pontos de vida.\n");
 
-      print("Empate! Ambos os danos são iguais.");
-      print("${cartaPrimeiroJogador.nome}, agora tem ${cartaPrimeiroJogador.qntVida.toStringAsFixed(1)} de vida.");
-      print("O jogador ${primeiroJogador.nomeJogador}, possui ${primeiroJogador.vida} pontos de vida.");
-
-      print("${cartaSegundoJogador.nome}, agora tem ${cartaSegundoJogador.qntVida.toStringAsFixed(1)} de vida.");
-      print("O jogador ${segundoJogador.nomeJogador}, possui ${segundoJogador.vida} pontos de vida.");
+      print("${cartaSegundoJogador.nome}, agora tem ${cartaSegundoJogador.qntVida.toStringAsFixed(1)} de vida.\n");
+      print("O jogador ${segundoJogador.nomeJogador}, possui ${segundoJogador.vida} pontos de vida.\n");
+      print("=============================================================================================\n\n");
     }
-    
   }
 
   List<Carta> _gerarCartasAleatorias(int quantidade) {

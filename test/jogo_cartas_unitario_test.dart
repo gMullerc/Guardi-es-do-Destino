@@ -36,7 +36,6 @@ void main() {
 
   group('Tabuleiro', () {
     test('deve gerar 14 cartas e distribuí-las entre os jogadores', () {
-      // Arrange: prepara o cenário
       Jogador jogador1 = Jogador(deck: [], nomeJogador: "Matheus");
       Jogador jogador2 = Jogador(deck: [], nomeJogador: "Luana");
       Tabuleiro tabuleiro =
