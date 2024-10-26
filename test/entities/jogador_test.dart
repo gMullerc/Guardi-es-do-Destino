@@ -1,7 +1,6 @@
-import 'package:test/test.dart';
-
-import '../../bin/entities/carta.dart';
-import '../../bin/entities/jogador.dart'; 
+import 'package:jogo_cartas_unitario/entities/carta.dart';
+import 'package:jogo_cartas_unitario/entities/jogador.dart';
+import 'package:test/test.dart'; 
 
 void main() {
 
