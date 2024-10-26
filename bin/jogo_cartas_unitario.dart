@@ -34,6 +34,15 @@ void main(List<String> arguments) {
   tabuleiro.gerarCartas();
 
   while (primeiroJogador.vida > 0 && segundoJogador.vida > 0) {
+
+    if (primeiroJogador.deck.isEmpty) {
+      print("\n\x1B[32mO jogador ${segundoJogador.nomeJogador} venceu, pois o jogador ${primeiroJogador.nomeJogador} ficou sem cartas!\x1B[0m");
+      break;
+    } else if (segundoJogador.deck.isEmpty) {
+      print("\n\x1B[32mO jogador ${primeiroJogador.nomeJogador} venceu, pois o jogador ${segundoJogador.nomeJogador} ficou sem cartas!\x1B[0m");
+      break;
+    }
+
     print("\x1B[32m=============== Cartas do ${tabuleiro.primeiroJogador.nomeJogador} ===============\x1B[32m\n\n");
     print(tabuleiro.primeiroJogador.visualizarCartas());
 
@@ -55,5 +64,13 @@ void main(List<String> arguments) {
     } else {
       print("\n\x1B[31mEscolha inválida de carta. Certifique-se de escolher um ID de carta válido.\x1B[31m\n");
     }
+  }
+
+  if (primeiroJogador.vida <= 0) {
+    print(
+        "\n\x1B[32mO vencedor é o jogador ${segundoJogador.nomeJogador}! Parabéns!\x1B[0m");
+  } else {
+    print(
+        "\n\x1B[32mO vencedor é o jogador ${primeiroJogador.nomeJogador}! Parabéns!\x1B[0m");
   }
 }
